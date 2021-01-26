@@ -1,0 +1,17 @@
+server:
+  port: 9093
+
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: CLIENT-MODULE
+          uri: lb://CLIENT-MODULE
+          predicates:
+            - Path=/client/**
+        - id: ORDER-MODULE
+          uri: lb://ORDER-MODULE
+          predicates:
+            - Path=/orders/**
